@@ -21,6 +21,7 @@ from common_ajax.views import ajax_html, ajax_action
 from docs.views import docs_html, docs_check_mysql, docs_Teambuilding
 from common_forms.views import testform, testfrom_add
 from api.views import api
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -40,9 +41,10 @@ urlpatterns = [
     url(r'^show_homepagedb/$', show_homepagedb, {"lord":"xuchu"}, name="show_homepagedb"),
     url(r'^api/$', api, name="api"),
 
-]
-if 'debug_toolbar' in settings.INSTALLED_APPS:
-    import debug_toolbar
-    urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+#if 'debug_toolbar' in settings.INSTALLED_APPS:
+#    import debug_toolbar
+#    urlpatterns += [
+#        url(r'^__debug__/', include(debug_toolbar.urls)),
+#    ]

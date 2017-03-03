@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'l+uj#@tn-=nef#2rc*y_)et440mto)l)%!y34g6@8%x!@=1#ku'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
-
+#DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
 
@@ -93,7 +93,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'acfun_qa_home',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'kokoxc',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -142,6 +142,7 @@ STATIC_URL = '/static/'
 # 把这些文件放到一起是为了用apache等部署的时候更方便
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_all')
 
+
 # 其它 存放静态文件的文件夹，可以用来存放项目中公用的静态文件，里面不能包含 STATIC_ROOT
 # 如果不想用 STATICFILES_DIRS 可以不用，都放在 app 里的 static 中也可以
 STATICFILES_DIRS = (
@@ -179,3 +180,7 @@ SESSION_COOKIE_HTTPONLY = True                           # 是否Session的cooki
 SESSION_COOKIE_AGE = 300                             # Session的cookie失效日期（2周）（默认）
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False                  # 是否关闭浏览器使得Session过期（默认）
 SESSION_SAVE_EVERY_REQUEST = False                       # 是否每次请求都保存Session，默认修改之后才保存（默认）
+STATICFILES_FINDERS = (
+		    "django.contrib.staticfiles.finders.FileSystemFinder",
+			"django.contrib.staticfiles.finders.AppDirectoriesFinder"
+				)
